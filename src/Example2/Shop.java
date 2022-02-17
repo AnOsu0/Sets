@@ -6,9 +6,9 @@ import java.util.Set;
 
 public class Shop {
     private static Scanner sc = new Scanner(System.in);
-
+    private static HashSet<Product> set = new HashSet<>();
     public static void generalLoop() {
-        HashSet<Product> set = new HashSet<>();
+
         int options = -1;
         while (options!=1) {
             System.out.println("Wyierz opcję:");
@@ -17,22 +17,30 @@ public class Shop {
             options = sc.nextInt();
             sc.nextLine();
             if (options == 0) {
-                Product product = makeProduct();
-                if (contains(product,set)){
-                    System.out.println("WYierz opcje:");
-                    System.out.println("1- nadpisanie produktu");
-                    System.out.println("2 - pozostawienie oryginalnego produktu");
-                    int options2 = sc.nextInt();
-                    if (options2 == 1) {
-                        set.remove(product);
-                        set.add(product);
-                    }
-                } else {
-                    set.add(product);
-                }
+                addProduct();
             }
         }
         System.out.println(set);
+    }
+
+    private static void addProduct() {
+        Product product = makeProduct();
+        if (contains(product)){
+            sameProduct(product);
+        } else {
+            set.add(product);
+        }
+    }
+
+    private static void sameProduct(Product product) {
+        System.out.println("WYierz opcje:");
+        System.out.println("1- nadpisanie produktu");
+        System.out.println("2 - pozostawienie oryginalnego produktu");
+        int options2 = sc.nextInt();
+        if (options2 == 1) {
+            set.remove(product);
+            set.add(product);
+        }
     }
 
     private static Product makeProduct() {
@@ -44,7 +52,7 @@ public class Shop {
         return new Product(name, price);
     }
 
-    private static boolean contains(Product product, HashSet<Product> set) {
+    private static boolean contains(Product product) {
         return set.contains(product);
     }
 
