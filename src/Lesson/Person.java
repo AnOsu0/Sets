@@ -2,7 +2,7 @@ package Lesson;
 
 import java.util.Objects;
 
-public class Person {
+public class Person implements Comparable<Person>{
     private String firstName;
     private String lastName;
 
@@ -37,11 +37,22 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName);
+        return Objects.equals(this.firstName, person.firstName) &&
+                Objects.equals(this.lastName, person.lastName);
     }
+
+
 
     @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName);
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        int firstNameCompare = firstName.compareTo(o.firstName);
+        if (firstNameCompare!=0)
+            return firstNameCompare;
+        else return lastName.compareTo(o.lastName);
     }
 }

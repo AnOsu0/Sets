@@ -12,7 +12,7 @@ public class PersonSet {
         people.add(new Person("Szymon","Zalewski"));
         System.out.println(people);
         System.out.println("Rozmiar " + people.size());
-        System.out.println("Czy zawiera Jan Kowalski " + people.contains(new Person("Jan","Kowalski")));
+        System.out.println("Czy zawiera Jan Kowalski " + people.contains(new Person("Jana","Kowalski")));
         people.remove(new Person("Anna","Kawalec"));
         System.out.println(people);
         System.out.println("Rozmiar " + people.size());
